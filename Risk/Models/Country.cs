@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RiskReact.Models.Entities
+namespace Risk.Models
 {
     public class Country
     {

@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Risk.Models;
+using Risk.Services.Interfaces;
 using System.Linq;
-using RiskReact.Models.Entities;
-using RiskReact.Services.Interfaces;
 
-namespace RiskReact.Services
+namespace Risk.Services
 {
     public class RandomCountryClaimer : ICountryClaimer
     {
         public bool ClaimCountry(Player player, Board board)
         {
-            var availableCountries = board.Countries.Where(c => c.OccupyingPlayer == null).ToList();
+            var availableCountries = board.Countries
+                .Where(x => x.Value.OccupyingPlayer == null)
+                .Select(x => x.Value).ToList();
 
             if (availableCountries.Count == 0)
                 return false;

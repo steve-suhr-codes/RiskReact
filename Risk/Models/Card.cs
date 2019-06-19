@@ -1,4 +1,4 @@
-﻿namespace RiskReact.Models.Entities
+﻿namespace Risk.Models
 {
     public enum CardType
     {

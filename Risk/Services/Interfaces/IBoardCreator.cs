@@ -1,6 +1,6 @@
-﻿using RiskReact.Models.Entities;
+﻿using Risk.Models;
 
-namespace RiskReact.Services.Interfaces
+namespace Risk.Services.Interfaces
 {
     public interface IBoardCreator
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using RiskReact.Models.Entities;
-using RiskReact.Services.Interfaces;
+using Risk.Models;
+using Risk.Services.Interfaces;
 
-namespace RiskReact.Services
+namespace Risk.Services
 {
     public class RandomTroopReenforcer : ITroopReenforcer
     {
@@ -16,6 +16,8 @@ namespace RiskReact.Services
             var chosenCountry = player.Countries[0];
 
             player.DropArmies(chosenCountry, armiesToDrop);
+
+            return true;
         }
     }
 }

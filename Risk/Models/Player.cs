@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using RiskReact.Services.Interfaces;
+using Risk.Services.Interfaces;
 
-namespace RiskReact.Models.Entities
+namespace Risk.Models
 {
     public enum PlayerColor
     {
