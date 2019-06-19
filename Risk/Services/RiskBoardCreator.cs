@@ -127,293 +127,346 @@ namespace Risk.Services
                 }
             };
 
-            board.CountryDictionary = board.Countries.ToDictionary(x => x.Value.Name, x => x.Value);
+            board.CountriesByName = board.Countries
+                .ToDictionary(x => x.Value.Name, x => x.Value);
 
-            board.CountryDictionary[RiskConstants.Countries.Alaska].AdjacentCountries = new List<Country>
+            board.Continents = new Dictionary<string, Continent>
             {
-                board.CountryDictionary[RiskConstants.Countries.NorthwestTerritory],
-                board.CountryDictionary[RiskConstants.Countries.Alberta],
-                board.CountryDictionary[RiskConstants.Countries.Kamchatka],
-            };
-            board.CountryDictionary[RiskConstants.Countries.NorthwestTerritory].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Alaska],
-                board.CountryDictionary[RiskConstants.Countries.Alberta],
-                board.CountryDictionary[RiskConstants.Countries.Ontario],
-                board.CountryDictionary[RiskConstants.Countries.Greenland],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Greenland].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.NorthwestTerritory],
-                board.CountryDictionary[RiskConstants.Countries.Ontario],
-                board.CountryDictionary[RiskConstants.Countries.Quebec],
-                board.CountryDictionary[RiskConstants.Countries.Iceland],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Alberta].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Alaska],
-                board.CountryDictionary[RiskConstants.Countries.NorthwestTerritory],
-                board.CountryDictionary[RiskConstants.Countries.Ontario],
-                board.CountryDictionary[RiskConstants.Countries.WesternUnitedStates],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Ontario].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Alberta],
-                board.CountryDictionary[RiskConstants.Countries.NorthwestTerritory],
-                board.CountryDictionary[RiskConstants.Countries.Greenland],
-                board.CountryDictionary[RiskConstants.Countries.Quebec],
-                board.CountryDictionary[RiskConstants.Countries.EasternUnitedStates],
-                board.CountryDictionary[RiskConstants.Countries.WesternUnitedStates],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Quebec].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Ontario],
-                board.CountryDictionary[RiskConstants.Countries.Greenland],
-                board.CountryDictionary[RiskConstants.Countries.EasternUnitedStates],
-            };
-            board.CountryDictionary[RiskConstants.Countries.WesternUnitedStates].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Alberta],
-                board.CountryDictionary[RiskConstants.Countries.Ontario],
-                board.CountryDictionary[RiskConstants.Countries.EasternUnitedStates],
-                board.CountryDictionary[RiskConstants.Countries.CentralAmerica],
-            };
-            board.CountryDictionary[RiskConstants.Countries.EasternUnitedStates].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.WesternUnitedStates],
-                board.CountryDictionary[RiskConstants.Countries.Ontario],
-                board.CountryDictionary[RiskConstants.Countries.Quebec],
-                board.CountryDictionary[RiskConstants.Countries.CentralAmerica],
-            };
-            board.CountryDictionary[RiskConstants.Countries.CentralAmerica].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.WesternUnitedStates],
-                board.CountryDictionary[RiskConstants.Countries.EasternUnitedStates],
-                board.CountryDictionary[RiskConstants.Countries.Venezuela],
+                { RiskConstants.Continents.NorthAmerica, new Continent
+                {
+                    Name = RiskConstants.Continents.NorthAmerica,
+                    ArmyBonus = 5,
+                    Countries = board.Countries
+                        .Where(x => x.Value.Continent == RiskConstants.Continents.NorthAmerica)
+                        .Select(x => x.Value).ToList()
+                } },
+                { RiskConstants.Continents.SouthAmerica, new Continent
+                {
+                    Name = RiskConstants.Continents.SouthAmerica,
+                    ArmyBonus = 2,
+                    Countries = board.Countries
+                        .Where(x => x.Value.Continent == RiskConstants.Continents.SouthAmerica)
+                        .Select(x => x.Value).ToList()
+                } },
+                { RiskConstants.Continents.Europe, new Continent
+                {
+                    Name = RiskConstants.Continents.Europe,
+                    ArmyBonus = 5,
+                    Countries = board.Countries
+                        .Where(x => x.Value.Continent == RiskConstants.Continents.Europe)
+                        .Select(x => x.Value).ToList()
+                } },
+                { RiskConstants.Continents.Africa, new Continent
+                {
+                    Name = RiskConstants.Continents.Africa,
+                    ArmyBonus = 3,
+                    Countries = board.Countries
+                        .Where(x => x.Value.Continent == RiskConstants.Continents.Africa)
+                        .Select(x => x.Value).ToList()
+                } },
+                { RiskConstants.Continents.Asia, new Continent
+                {
+                    Name = RiskConstants.Continents.Asia,
+                    ArmyBonus = 7,
+                    Countries = board.Countries
+                        .Where(x => x.Value.Continent == RiskConstants.Continents.Asia)
+                        .Select(x => x.Value).ToList()
+                } },
+                { RiskConstants.Continents.Australia, new Continent
+                {
+                    Name = RiskConstants.Continents.Australia,
+                    ArmyBonus = 2,
+                    Countries = board.Countries
+                        .Where(x => x.Value.Continent == RiskConstants.Continents.Australia)
+                        .Select(x => x.Value).ToList()
+                } },
             };
 
-            board.CountryDictionary[RiskConstants.Countries.Venezuela].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Alaska].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Peru],
-                board.CountryDictionary[RiskConstants.Countries.Brazil],
-                board.CountryDictionary[RiskConstants.Countries.CentralAmerica],
+                board.CountriesByName[RiskConstants.Countries.NorthwestTerritory],
+                board.CountriesByName[RiskConstants.Countries.Alberta],
+                board.CountriesByName[RiskConstants.Countries.Kamchatka],
             };
-            board.CountryDictionary[RiskConstants.Countries.Peru].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.NorthwestTerritory].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Venezuela],
-                board.CountryDictionary[RiskConstants.Countries.Brazil],
-                board.CountryDictionary[RiskConstants.Countries.Argentina],
+                board.CountriesByName[RiskConstants.Countries.Alaska],
+                board.CountriesByName[RiskConstants.Countries.Alberta],
+                board.CountriesByName[RiskConstants.Countries.Ontario],
+                board.CountriesByName[RiskConstants.Countries.Greenland],
             };
-            board.CountryDictionary[RiskConstants.Countries.Brazil].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Greenland].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Venezuela],
-                board.CountryDictionary[RiskConstants.Countries.Peru],
-                board.CountryDictionary[RiskConstants.Countries.Argentina],
-                board.CountryDictionary[RiskConstants.Countries.NorthAfrica],
+                board.CountriesByName[RiskConstants.Countries.NorthwestTerritory],
+                board.CountriesByName[RiskConstants.Countries.Ontario],
+                board.CountriesByName[RiskConstants.Countries.Quebec],
+                board.CountriesByName[RiskConstants.Countries.Iceland],
             };
-            board.CountryDictionary[RiskConstants.Countries.Argentina].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Alberta].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Peru],
-                board.CountryDictionary[RiskConstants.Countries.Brazil],
+                board.CountriesByName[RiskConstants.Countries.Alaska],
+                board.CountriesByName[RiskConstants.Countries.NorthwestTerritory],
+                board.CountriesByName[RiskConstants.Countries.Ontario],
+                board.CountriesByName[RiskConstants.Countries.WesternUnitedStates],
             };
-
-            board.CountryDictionary[RiskConstants.Countries.Iceland].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Ontario].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.GreatBritain],
-                board.CountryDictionary[RiskConstants.Countries.Scandinavia],
-                board.CountryDictionary[RiskConstants.Countries.Greenland],
+                board.CountriesByName[RiskConstants.Countries.Alberta],
+                board.CountriesByName[RiskConstants.Countries.NorthwestTerritory],
+                board.CountriesByName[RiskConstants.Countries.Greenland],
+                board.CountriesByName[RiskConstants.Countries.Quebec],
+                board.CountriesByName[RiskConstants.Countries.EasternUnitedStates],
+                board.CountriesByName[RiskConstants.Countries.WesternUnitedStates],
             };
-            board.CountryDictionary[RiskConstants.Countries.Scandinavia].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Quebec].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Iceland],
-                board.CountryDictionary[RiskConstants.Countries.GreatBritain],
-                board.CountryDictionary[RiskConstants.Countries.NorthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.Ukraine],
+                board.CountriesByName[RiskConstants.Countries.Ontario],
+                board.CountriesByName[RiskConstants.Countries.Greenland],
+                board.CountriesByName[RiskConstants.Countries.EasternUnitedStates],
             };
-            board.CountryDictionary[RiskConstants.Countries.GreatBritain].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.WesternUnitedStates].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Iceland],
-                board.CountryDictionary[RiskConstants.Countries.Scandinavia],
-                board.CountryDictionary[RiskConstants.Countries.NorthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.WesternEurope],
+                board.CountriesByName[RiskConstants.Countries.Alberta],
+                board.CountriesByName[RiskConstants.Countries.Ontario],
+                board.CountriesByName[RiskConstants.Countries.EasternUnitedStates],
+                board.CountriesByName[RiskConstants.Countries.CentralAmerica],
             };
-            board.CountryDictionary[RiskConstants.Countries.NorthernEurope].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.EasternUnitedStates].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Iceland],
-                board.CountryDictionary[RiskConstants.Countries.Scandinavia],
-                board.CountryDictionary[RiskConstants.Countries.GreatBritain],
-                board.CountryDictionary[RiskConstants.Countries.Ukraine],
-                board.CountryDictionary[RiskConstants.Countries.WesternEurope],
-                board.CountryDictionary[RiskConstants.Countries.SouthernEurope],
+                board.CountriesByName[RiskConstants.Countries.WesternUnitedStates],
+                board.CountriesByName[RiskConstants.Countries.Ontario],
+                board.CountriesByName[RiskConstants.Countries.Quebec],
+                board.CountriesByName[RiskConstants.Countries.CentralAmerica],
             };
-            board.CountryDictionary[RiskConstants.Countries.Ukraine].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.CentralAmerica].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Scandinavia],
-                board.CountryDictionary[RiskConstants.Countries.NorthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.SouthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.Ural],
-                board.CountryDictionary[RiskConstants.Countries.Afghanistan],
-                board.CountryDictionary[RiskConstants.Countries.MiddleEast],
-            };
-            board.CountryDictionary[RiskConstants.Countries.WesternEurope].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.GreatBritain],
-                board.CountryDictionary[RiskConstants.Countries.NorthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.SouthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.NorthAfrica],
+                board.CountriesByName[RiskConstants.Countries.WesternUnitedStates],
+                board.CountriesByName[RiskConstants.Countries.EasternUnitedStates],
+                board.CountriesByName[RiskConstants.Countries.Venezuela],
             };
 
-            board.CountryDictionary[RiskConstants.Countries.Egypt].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Venezuela].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.NorthAfrica],
-                board.CountryDictionary[RiskConstants.Countries.EastAfrica],
-                board.CountryDictionary[RiskConstants.Countries.SouthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.MiddleEast],
+                board.CountriesByName[RiskConstants.Countries.Peru],
+                board.CountriesByName[RiskConstants.Countries.Brazil],
+                board.CountriesByName[RiskConstants.Countries.CentralAmerica],
             };
-            board.CountryDictionary[RiskConstants.Countries.NorthAfrica].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Peru].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Egypt],
-                board.CountryDictionary[RiskConstants.Countries.EastAfrica],
-                board.CountryDictionary[RiskConstants.Countries.Congo],
-                board.CountryDictionary[RiskConstants.Countries.Brazil],
+                board.CountriesByName[RiskConstants.Countries.Venezuela],
+                board.CountriesByName[RiskConstants.Countries.Brazil],
+                board.CountriesByName[RiskConstants.Countries.Argentina],
             };
-            board.CountryDictionary[RiskConstants.Countries.EastAfrica].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Brazil].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Egypt],
-                board.CountryDictionary[RiskConstants.Countries.NorthAfrica],
-                board.CountryDictionary[RiskConstants.Countries.Congo],
-                board.CountryDictionary[RiskConstants.Countries.Madagascar],
-                board.CountryDictionary[RiskConstants.Countries.MiddleEast],
+                board.CountriesByName[RiskConstants.Countries.Venezuela],
+                board.CountriesByName[RiskConstants.Countries.Peru],
+                board.CountriesByName[RiskConstants.Countries.Argentina],
+                board.CountriesByName[RiskConstants.Countries.NorthAfrica],
             };
-            board.CountryDictionary[RiskConstants.Countries.Congo].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Argentina].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.NorthAfrica],
-                board.CountryDictionary[RiskConstants.Countries.EastAfrica],
-                board.CountryDictionary[RiskConstants.Countries.SouthAfrica],
-            };
-            board.CountryDictionary[RiskConstants.Countries.SouthAfrica].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Congo],
-                board.CountryDictionary[RiskConstants.Countries.EastAfrica],
-                board.CountryDictionary[RiskConstants.Countries.Madagascar],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Madagascar].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.EastAfrica],
-                board.CountryDictionary[RiskConstants.Countries.SouthAfrica],
+                board.CountriesByName[RiskConstants.Countries.Peru],
+                board.CountriesByName[RiskConstants.Countries.Brazil],
             };
 
-            board.CountryDictionary[RiskConstants.Countries.MiddleEast].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Iceland].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Afghanistan],
-                board.CountryDictionary[RiskConstants.Countries.India],
-                board.CountryDictionary[RiskConstants.Countries.Ukraine],
-                board.CountryDictionary[RiskConstants.Countries.SouthernEurope],
-                board.CountryDictionary[RiskConstants.Countries.Egypt],
-                board.CountryDictionary[RiskConstants.Countries.EastAfrica],
+                board.CountriesByName[RiskConstants.Countries.GreatBritain],
+                board.CountriesByName[RiskConstants.Countries.Scandinavia],
+                board.CountriesByName[RiskConstants.Countries.Greenland],
             };
-            board.CountryDictionary[RiskConstants.Countries.Afghanistan].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Scandinavia].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.MiddleEast],
-                board.CountryDictionary[RiskConstants.Countries.India],
-                board.CountryDictionary[RiskConstants.Countries.China],
-                board.CountryDictionary[RiskConstants.Countries.Ural],
-                board.CountryDictionary[RiskConstants.Countries.Ukraine],
+                board.CountriesByName[RiskConstants.Countries.Iceland],
+                board.CountriesByName[RiskConstants.Countries.GreatBritain],
+                board.CountriesByName[RiskConstants.Countries.NorthernEurope],
+                board.CountriesByName[RiskConstants.Countries.Ukraine],
             };
-            board.CountryDictionary[RiskConstants.Countries.Ural].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.GreatBritain].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Afghanistan],
-                board.CountryDictionary[RiskConstants.Countries.China],
-                board.CountryDictionary[RiskConstants.Countries.Siberia],
-                board.CountryDictionary[RiskConstants.Countries.Ukraine],
+                board.CountriesByName[RiskConstants.Countries.Iceland],
+                board.CountriesByName[RiskConstants.Countries.Scandinavia],
+                board.CountriesByName[RiskConstants.Countries.NorthernEurope],
+                board.CountriesByName[RiskConstants.Countries.WesternEurope],
             };
-            board.CountryDictionary[RiskConstants.Countries.Siberia].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.NorthernEurope].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Ural],
-                board.CountryDictionary[RiskConstants.Countries.China],
-                board.CountryDictionary[RiskConstants.Countries.Mongolia],
-                board.CountryDictionary[RiskConstants.Countries.Irkutsk],
-                board.CountryDictionary[RiskConstants.Countries.Yakutsk],
+                board.CountriesByName[RiskConstants.Countries.Iceland],
+                board.CountriesByName[RiskConstants.Countries.Scandinavia],
+                board.CountriesByName[RiskConstants.Countries.GreatBritain],
+                board.CountriesByName[RiskConstants.Countries.Ukraine],
+                board.CountriesByName[RiskConstants.Countries.WesternEurope],
+                board.CountriesByName[RiskConstants.Countries.SouthernEurope],
             };
-            board.CountryDictionary[RiskConstants.Countries.Yakutsk].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Ukraine].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Siberia],
-                board.CountryDictionary[RiskConstants.Countries.Irkutsk],
-                board.CountryDictionary[RiskConstants.Countries.Kamchatka],
+                board.CountriesByName[RiskConstants.Countries.Scandinavia],
+                board.CountriesByName[RiskConstants.Countries.NorthernEurope],
+                board.CountriesByName[RiskConstants.Countries.SouthernEurope],
+                board.CountriesByName[RiskConstants.Countries.Ural],
+                board.CountriesByName[RiskConstants.Countries.Afghanistan],
+                board.CountriesByName[RiskConstants.Countries.MiddleEast],
             };
-            board.CountryDictionary[RiskConstants.Countries.Kamchatka].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.WesternEurope].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Yakutsk],
-                board.CountryDictionary[RiskConstants.Countries.Irkutsk],
-                board.CountryDictionary[RiskConstants.Countries.Mongolia],
-                board.CountryDictionary[RiskConstants.Countries.Japan],
-                board.CountryDictionary[RiskConstants.Countries.Alaska],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Irkutsk].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Yakutsk],
-                board.CountryDictionary[RiskConstants.Countries.Kamchatka],
-                board.CountryDictionary[RiskConstants.Countries.Mongolia],
-                board.CountryDictionary[RiskConstants.Countries.Siberia],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Mongolia].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Irkutsk],
-                board.CountryDictionary[RiskConstants.Countries.Kamchatka],
-                board.CountryDictionary[RiskConstants.Countries.Japan],
-                board.CountryDictionary[RiskConstants.Countries.China],
-                board.CountryDictionary[RiskConstants.Countries.Siberia],
-            };
-            board.CountryDictionary[RiskConstants.Countries.China].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Afghanistan],
-                board.CountryDictionary[RiskConstants.Countries.Ural],
-                board.CountryDictionary[RiskConstants.Countries.Siberia],
-                board.CountryDictionary[RiskConstants.Countries.Mongolia],
-                board.CountryDictionary[RiskConstants.Countries.Siam],
-                board.CountryDictionary[RiskConstants.Countries.India],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Japan].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.Kamchatka],
-                board.CountryDictionary[RiskConstants.Countries.Mongolia],
-            };
-            board.CountryDictionary[RiskConstants.Countries.India].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.MiddleEast],
-                board.CountryDictionary[RiskConstants.Countries.Afghanistan],
-                board.CountryDictionary[RiskConstants.Countries.China],
-                board.CountryDictionary[RiskConstants.Countries.Siam],
-            };
-            board.CountryDictionary[RiskConstants.Countries.Siam].AdjacentCountries = new List<Country>
-            {
-                board.CountryDictionary[RiskConstants.Countries.India],
-                board.CountryDictionary[RiskConstants.Countries.China],
-                board.CountryDictionary[RiskConstants.Countries.Indonesia],
+                board.CountriesByName[RiskConstants.Countries.GreatBritain],
+                board.CountriesByName[RiskConstants.Countries.NorthernEurope],
+                board.CountriesByName[RiskConstants.Countries.SouthernEurope],
+                board.CountriesByName[RiskConstants.Countries.NorthAfrica],
             };
 
-            board.CountryDictionary[RiskConstants.Countries.Indonesia].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Egypt].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Siam],
-                board.CountryDictionary[RiskConstants.Countries.NewGuinea],
-                board.CountryDictionary[RiskConstants.Countries.WesternAustralia],
+                board.CountriesByName[RiskConstants.Countries.NorthAfrica],
+                board.CountriesByName[RiskConstants.Countries.EastAfrica],
+                board.CountriesByName[RiskConstants.Countries.SouthernEurope],
+                board.CountriesByName[RiskConstants.Countries.MiddleEast],
             };
-            board.CountryDictionary[RiskConstants.Countries.NewGuinea].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.NorthAfrica].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Indonesia],
-                board.CountryDictionary[RiskConstants.Countries.EasternAustralia],
-                board.CountryDictionary[RiskConstants.Countries.WesternAustralia],
+                board.CountriesByName[RiskConstants.Countries.Egypt],
+                board.CountriesByName[RiskConstants.Countries.EastAfrica],
+                board.CountriesByName[RiskConstants.Countries.Congo],
+                board.CountriesByName[RiskConstants.Countries.Brazil],
             };
-            board.CountryDictionary[RiskConstants.Countries.WesternAustralia].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.EastAfrica].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.Indonesia],
-                board.CountryDictionary[RiskConstants.Countries.EasternAustralia],
-                board.CountryDictionary[RiskConstants.Countries.NewGuinea],
+                board.CountriesByName[RiskConstants.Countries.Egypt],
+                board.CountriesByName[RiskConstants.Countries.NorthAfrica],
+                board.CountriesByName[RiskConstants.Countries.Congo],
+                board.CountriesByName[RiskConstants.Countries.Madagascar],
+                board.CountriesByName[RiskConstants.Countries.MiddleEast],
             };
-            board.CountryDictionary[RiskConstants.Countries.EasternAustralia].AdjacentCountries = new List<Country>
+            board.CountriesByName[RiskConstants.Countries.Congo].AdjacentCountries = new List<Country>
             {
-                board.CountryDictionary[RiskConstants.Countries.WesternAustralia],
-                board.CountryDictionary[RiskConstants.Countries.NewGuinea],
+                board.CountriesByName[RiskConstants.Countries.NorthAfrica],
+                board.CountriesByName[RiskConstants.Countries.EastAfrica],
+                board.CountriesByName[RiskConstants.Countries.SouthAfrica],
+            };
+            board.CountriesByName[RiskConstants.Countries.SouthAfrica].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Congo],
+                board.CountriesByName[RiskConstants.Countries.EastAfrica],
+                board.CountriesByName[RiskConstants.Countries.Madagascar],
+            };
+            board.CountriesByName[RiskConstants.Countries.Madagascar].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.EastAfrica],
+                board.CountriesByName[RiskConstants.Countries.SouthAfrica],
+            };
+
+            board.CountriesByName[RiskConstants.Countries.MiddleEast].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Afghanistan],
+                board.CountriesByName[RiskConstants.Countries.India],
+                board.CountriesByName[RiskConstants.Countries.Ukraine],
+                board.CountriesByName[RiskConstants.Countries.SouthernEurope],
+                board.CountriesByName[RiskConstants.Countries.Egypt],
+                board.CountriesByName[RiskConstants.Countries.EastAfrica],
+            };
+            board.CountriesByName[RiskConstants.Countries.Afghanistan].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.MiddleEast],
+                board.CountriesByName[RiskConstants.Countries.India],
+                board.CountriesByName[RiskConstants.Countries.China],
+                board.CountriesByName[RiskConstants.Countries.Ural],
+                board.CountriesByName[RiskConstants.Countries.Ukraine],
+            };
+            board.CountriesByName[RiskConstants.Countries.Ural].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Afghanistan],
+                board.CountriesByName[RiskConstants.Countries.China],
+                board.CountriesByName[RiskConstants.Countries.Siberia],
+                board.CountriesByName[RiskConstants.Countries.Ukraine],
+            };
+            board.CountriesByName[RiskConstants.Countries.Siberia].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Ural],
+                board.CountriesByName[RiskConstants.Countries.China],
+                board.CountriesByName[RiskConstants.Countries.Mongolia],
+                board.CountriesByName[RiskConstants.Countries.Irkutsk],
+                board.CountriesByName[RiskConstants.Countries.Yakutsk],
+            };
+            board.CountriesByName[RiskConstants.Countries.Yakutsk].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Siberia],
+                board.CountriesByName[RiskConstants.Countries.Irkutsk],
+                board.CountriesByName[RiskConstants.Countries.Kamchatka],
+            };
+            board.CountriesByName[RiskConstants.Countries.Kamchatka].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Yakutsk],
+                board.CountriesByName[RiskConstants.Countries.Irkutsk],
+                board.CountriesByName[RiskConstants.Countries.Mongolia],
+                board.CountriesByName[RiskConstants.Countries.Japan],
+                board.CountriesByName[RiskConstants.Countries.Alaska],
+            };
+            board.CountriesByName[RiskConstants.Countries.Irkutsk].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Yakutsk],
+                board.CountriesByName[RiskConstants.Countries.Kamchatka],
+                board.CountriesByName[RiskConstants.Countries.Mongolia],
+                board.CountriesByName[RiskConstants.Countries.Siberia],
+            };
+            board.CountriesByName[RiskConstants.Countries.Mongolia].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Irkutsk],
+                board.CountriesByName[RiskConstants.Countries.Kamchatka],
+                board.CountriesByName[RiskConstants.Countries.Japan],
+                board.CountriesByName[RiskConstants.Countries.China],
+                board.CountriesByName[RiskConstants.Countries.Siberia],
+            };
+            board.CountriesByName[RiskConstants.Countries.China].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Afghanistan],
+                board.CountriesByName[RiskConstants.Countries.Ural],
+                board.CountriesByName[RiskConstants.Countries.Siberia],
+                board.CountriesByName[RiskConstants.Countries.Mongolia],
+                board.CountriesByName[RiskConstants.Countries.Siam],
+                board.CountriesByName[RiskConstants.Countries.India],
+            };
+            board.CountriesByName[RiskConstants.Countries.Japan].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Kamchatka],
+                board.CountriesByName[RiskConstants.Countries.Mongolia],
+            };
+            board.CountriesByName[RiskConstants.Countries.India].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.MiddleEast],
+                board.CountriesByName[RiskConstants.Countries.Afghanistan],
+                board.CountriesByName[RiskConstants.Countries.China],
+                board.CountriesByName[RiskConstants.Countries.Siam],
+            };
+            board.CountriesByName[RiskConstants.Countries.Siam].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.India],
+                board.CountriesByName[RiskConstants.Countries.China],
+                board.CountriesByName[RiskConstants.Countries.Indonesia],
+            };
+
+            board.CountriesByName[RiskConstants.Countries.Indonesia].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Siam],
+                board.CountriesByName[RiskConstants.Countries.NewGuinea],
+                board.CountriesByName[RiskConstants.Countries.WesternAustralia],
+            };
+            board.CountriesByName[RiskConstants.Countries.NewGuinea].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Indonesia],
+                board.CountriesByName[RiskConstants.Countries.EasternAustralia],
+                board.CountriesByName[RiskConstants.Countries.WesternAustralia],
+            };
+            board.CountriesByName[RiskConstants.Countries.WesternAustralia].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.Indonesia],
+                board.CountriesByName[RiskConstants.Countries.EasternAustralia],
+                board.CountriesByName[RiskConstants.Countries.NewGuinea],
+            };
+            board.CountriesByName[RiskConstants.Countries.EasternAustralia].AdjacentCountries = new List<Country>
+            {
+                board.CountriesByName[RiskConstants.Countries.WesternAustralia],
+                board.CountriesByName[RiskConstants.Countries.NewGuinea],
             };
 
             return board;

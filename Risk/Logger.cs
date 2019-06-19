@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 
 namespace Risk
 {
@@ -19,6 +16,10 @@ namespace Risk
             Console.WriteLine("::: GAME :::");
             Console.WriteLine($"::: Game Phase {_game.GamePhase} :::");
             LogBoard();
+            LogCurrentPlayer();
+            Console.WriteLine(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         public void LogBoard()
@@ -29,10 +30,18 @@ namespace Risk
                 Console.WriteLine($"{countryKeyValue.Key}\t- {countryKeyValue.Value.Name} [ Player = {countryKeyValue.Value.OccupyingPlayer?.Name}, Armies = {countryKeyValue.Value.OccupyingArmyCount} ]");
             }
             Console.WriteLine();
-
-
         }
 
+        public void LogCurrentPlayer()
+        {
+            Console.WriteLine($"::: Current Player : {_game.Table.CurrentPlayer.Name} :::");
+            Console.WriteLine($"Countries : {_game.Table.CurrentPlayer.Countries.Count} :::");
+            Console.WriteLine($"Armies to distribute : {_game.Table.CurrentPlayer.ArmiesToDistribute} :::");
+        }
 
+        public void LogLine(string line)
+        {
+            Console.WriteLine(line);
+        }
     }
 }
