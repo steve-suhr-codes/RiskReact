@@ -18,8 +18,6 @@ namespace Risk
             LogBoard();
             LogCurrentPlayer();
             Console.WriteLine(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-            Console.WriteLine();
-            Console.WriteLine();
         }
 
         public void LogBoard()

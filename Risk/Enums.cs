@@ -30,6 +30,7 @@ namespace Risk
 
     public enum PlayerColor
     {
+        None,
         Red,
         Orange,
         Yellow,

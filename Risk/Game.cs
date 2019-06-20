@@ -30,32 +30,32 @@ namespace Risk
 
             var countryClaimer = new RandomCountryClaimer();
             var troopReenforcer = new RandomTroopReenforcer();
-            var turnTaker = new RandomTurnTaker(new EvenDice());
+            var attacker = new RandomAttacker(new EvenDice(_logger));
 
             Table = new Table
             {
                 Board = _boardCreator.CreateBoard(),
                 Players = new List<Player>
                 {
-                    new Player(countryClaimer, troopReenforcer, turnTaker)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
                     {
                         Name = "Player 1",
                         Color = PlayerColor.Red,
                         ArmiesToDistribute = armiesPerPlayer
                     },
-                    new Player(countryClaimer, troopReenforcer, turnTaker)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
                     {
                         Name = "Player 2",
                         Color = PlayerColor.Blue,
                         ArmiesToDistribute = armiesPerPlayer
                     },
-                    new Player(countryClaimer, troopReenforcer, turnTaker)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
                     {
                         Name = "Player 3",
                         Color = PlayerColor.Purple,
                         ArmiesToDistribute = armiesPerPlayer
                     },
-                    new Player(countryClaimer, troopReenforcer, turnTaker)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
                     {
                         Name = "Player 4",
                         Color = PlayerColor.Yellow,
@@ -90,8 +90,17 @@ namespace Risk
 
                 case GamePhase.Play:
                     TakeTurn();
+                    if (TurnPhase == TurnPhase.None)
+                    {
+                        //turn over
+                        TurnPhase = TurnPhase.GainArmies;
+                        Table.NextTurn();
+                    }
                     if (Table.Players.Any(p => p.Countries.Count == Table.Board.Countries.Count))
+                    {
+                        //game over
                         GamePhase = GamePhase.Finished;
+                    }
                     break;
 
                 default:
@@ -144,8 +153,10 @@ namespace Risk
                     Table.CurrentPlayer.Attack();
                     TurnPhase = TurnPhase.Fortify;
                     break;
-                //case TurnPhase.Fortify:
-                //    break;
+                case TurnPhase.Fortify:
+                    Table.CurrentPlayer.Fortify();
+                    TurnPhase = TurnPhase.None;
+                    break;
                 case TurnPhase.None:
                 default:
                     _logger.LogLine($"Unhandled turn phase {TurnPhase}.");

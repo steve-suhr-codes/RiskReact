@@ -15,13 +15,15 @@ namespace Risk.Models
 
         private ICountryClaimer _countryClaimer { get; set; }
         private ITroopReenforcer _troopReenforcer { get; set; }
-        private ITurnTaker _turnTaker { get; set; }
+        private IAttacker _attacker { get; set; }
+        private Logger _logger { get; set; }
 
-        public Player(ICountryClaimer countryClaimer, ITroopReenforcer troopReenforcer, ITurnTaker turnTaker)
+        public Player(ICountryClaimer countryClaimer, ITroopReenforcer troopReenforcer, IAttacker attacker, Logger logger)
         {
             _countryClaimer = countryClaimer;
             _troopReenforcer = troopReenforcer;
-            _turnTaker = turnTaker;
+            _attacker = attacker;
+            _logger = logger;
         }
 
         public void ClaimCountry(Country country)
@@ -46,7 +48,12 @@ namespace Risk.Models
 
         public void Attack()
         {
-            _turnTaker.Attack(this);
+            _attacker.Attack(this);
+        }
+
+        public void Fortify()
+        {
+
         }
 
         public bool Reenforce()
@@ -56,6 +63,7 @@ namespace Risk.Models
 
         public void GainArmies(int newArmies)
         {
+            _logger.LogLine($"* {Name} gets {newArmies} new armies!");
             ArmiesToDistribute += newArmies;
         }
 
@@ -75,6 +83,8 @@ namespace Risk.Models
 
             country.OccupyingArmyCount += armyCount;
             ArmiesToDistribute -= armyCount;
+
+            _logger.LogLine($"* {Name} drops {armyCount} armies into {country.Name} for a total of {country.OccupyingArmyCount}.  {ArmiesToDistribute} armies left to drop.");
         }
 
         public void ConquerCountry(Country winner, Country loser, int invadingArmyCount)

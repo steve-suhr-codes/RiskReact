@@ -2,7 +2,7 @@
 
 namespace Risk.Services.Interfaces
 {
-    public interface ITurnTaker
+    public interface IAttacker
     {
         void Attack(Player player);
     }

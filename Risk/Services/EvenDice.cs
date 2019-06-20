@@ -6,6 +6,12 @@ namespace Risk.Services
 {
     public class EvenDice : IDice
     {
+        private Logger _logger { get; set; }
+
+        public EvenDice(Logger logger)
+        {
+            _logger = logger;
+        }
         public RollResult Roll(Attack attack)
         {
             var isWinner = false;
@@ -16,7 +22,11 @@ namespace Risk.Services
                 //attacker wins
                 isWinner = true;
                 loses = attack.Defender.OccupyingArmyCount;
-
+                _logger.LogLine($"* {attack.Attacker.OccupyingPlayer.Name} ({attack.Attacker.Name}) defeats {attack.Defender.OccupyingPlayer.Name} ({attack.Defender.Name}).  {loses} armies lost on both sides");
+            }
+            else
+            {
+                _logger.LogLine($"* {attack.Attacker.OccupyingPlayer.Name} ({attack.Attacker.Name}) LOST when attacking {attack.Defender.OccupyingPlayer.Name} ({attack.Defender.Name}).  {loses} armies lost on both sides");
             }
 
             attack.Attacker.OccupyingArmyCount -= loses;

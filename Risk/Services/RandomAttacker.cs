@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Risk.Models;
 using Risk.Services.Interfaces;
 
 namespace Risk.Services
 {
-    public class RandomTurnTaker : ITurnTaker
+    public class RandomAttacker : IAttacker
     {
         private IDice _dice { get; set; }
 
-        public RandomTurnTaker(IDice dice)
+        public RandomAttacker(IDice dice)
         {
             _dice = dice;
         }
@@ -25,8 +26,8 @@ namespace Risk.Services
                     player.ConquerCountry(nextAttack.Attacker, nextAttack.Defender, nextAttack.Attacker.OccupyingArmyCount - 1);
                 }
 
-                nextAttack = null;
-                //nextAttack = GetNextAttack(player);
+                //nextAttack = null;
+                nextAttack = GetNextAttack(player);
             }
         }
 
@@ -51,6 +52,12 @@ namespace Risk.Services
 
                     battleOptions.Add(attack);
                 }
+            }
+
+            if (battleOptions.Count == 0)
+            {
+                Console.WriteLine($"No attack options for {player.Name}.  {countriesThatCanAttack.Count} countries are able to attack at all.");
+                return null;
             }
 
             var maxAdvantage = battleOptions.Max(x => x.AttackerAdvantage);

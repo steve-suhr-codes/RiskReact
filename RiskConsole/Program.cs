@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using Risk;
 using Risk.Services;
 
@@ -20,10 +21,14 @@ namespace RiskConsole
             var stillPlaying = true;
             while (stillPlaying)
             {
-                game.LogGame();
                 Console.WriteLine("Enter to advance turn");
-                Console.ReadLine();
-                game.PlayTurn();
+                var input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input))
+                    game.PlayTurn();
+                else if (input == "b")
+                    game.LogGame();
+                else 
+                    Console.WriteLine($"Unknown command {input}");
             }
 
             Console.WriteLine("Finished.  Enter to exit.");
