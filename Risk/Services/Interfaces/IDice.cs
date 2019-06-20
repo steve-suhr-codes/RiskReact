@@ -2,8 +2,8 @@
 
 namespace Risk.Services.Interfaces
 {
-    public interface ITurnTaker
+    public interface IDice
     {
-        void Attack(Player player);
+        RollResult Roll(Attack attack);
     }
 }

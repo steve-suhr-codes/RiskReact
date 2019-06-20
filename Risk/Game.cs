@@ -30,7 +30,7 @@ namespace Risk
 
             var countryClaimer = new RandomCountryClaimer();
             var troopReenforcer = new RandomTroopReenforcer();
-            var turnTaker = new RandomTurnTaker();
+            var turnTaker = new RandomTurnTaker(new EvenDice());
 
             Table = new Table
             {
@@ -133,10 +133,17 @@ namespace Risk
             {
                 case TurnPhase.GainArmies:
                     if (Table.CurrentPlayer.ArmiesToDistribute == 0)
-                        Table.CurrentPlayer.GainArmies();
+                    {
+                        var newArmies = _armyDelegator.CalculateArmiesGained(Table.CurrentPlayer.Countries, Table.Board.Continents);
+                        Table.CurrentPlayer.GainArmies(newArmies);
+                        Table.CurrentPlayer.Reenforce();
+                        TurnPhase = TurnPhase.Attack;
+                    }
                     break;
-                //case TurnPhase.Attack:
-                //    break;
+                case TurnPhase.Attack:
+                    Table.CurrentPlayer.Attack();
+                    TurnPhase = TurnPhase.Fortify;
+                    break;
                 //case TurnPhase.Fortify:
                 //    break;
                 case TurnPhase.None:
