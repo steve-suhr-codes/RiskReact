@@ -1,21 +1,30 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+//import axios from "axios";
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+export function FetchData() {
 
-  constructor (props) {
-    super(props);
-    this.state = { forecasts: [], loading: true };
+  const [forecasts, setForecasts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    // axios
+    //   .get(
+    //     'api/SampleData/WeatherForecasts'
+    //   )
+    //   .then(({data}) => {
+    //     setForecasts(data);
+    //     setLoading(false);
+    //   });
     fetch('api/SampleData/WeatherForecasts')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ forecasts: data, loading: false });
-      });
-  }
+    .then(response => response.json())
+    .then(data => {
+      setForecasts(data);
+      setLoading(false);
+    });
+  }, []);
 
-  static renderForecastsTable (forecasts) {
-    return (
+  function renderForecastsTable (forecasts) {
+      return (
       <table className='table table-striped'>
         <thead>
           <tr>
@@ -39,17 +48,15 @@ export class FetchData extends Component {
     );
   }
 
-  render () {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+  let contents = loading
+    ? <p><em>Loading...</em></p>
+    : renderForecastsTable(forecasts);
 
-    return (
-      <div>
-        <h1>Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
-        {contents}
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Weather forecast</h1>
+      <p>This component demonstrates fetching data from the server.</p>
+      {contents}
+    </div>
+  );
 }
