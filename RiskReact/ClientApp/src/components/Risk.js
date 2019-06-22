@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import RiskMapImg from '../Media/RiskMap.png'
+import RiskMapImg from '../Media/RiskMap.jpg'
 import './Risk.css';
+import { RiskCountrySvg } from './RiskCountrySvg';
 
 export function Risk() {
 
@@ -13,7 +14,7 @@ export function Risk() {
     fetch(apiCall)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            data = data.filter(c => c.x !== 0);
             setBoardCountries(data);
             setLoading(false);
         });
@@ -27,43 +28,62 @@ export function Risk() {
       refreshBoard('api/Risk/Play');
   }
 
+  var testCountry = {
+    name : 'test',
+    continent : 'North America',
+    occupyingArmyCount : 0,
+    occupyingPlayerColor : 'red',
+    x : 120,
+    y : 47
+  }
+
+  //console.log(boardCountires[0]);
+  //console.log(testCountry);
+
   function renderBoard(countries) {
-    //console.log('renderBoard');
-    //console.log(countries);
     return (
       <div>
-      <button className="btn btn-primary" onClick={play}>Play</button>
+        <svg version="1.1"
+            baseProfile="full"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            viewBox="0 0 707 397">
 
-      <div>
-        <img src={RiskMapImg} alt="Risk Map" />
-      </div>
+          <image xlinkHref={RiskMapImg} x="0" y="0" height="100%" width="100%"/>
 
-      <div className='risk-map'>
+          {boardCountires.map(c => <RiskCountrySvg key={c.name} country={c} />)}
+          <RiskCountrySvg key="dev" country={testCountry} />
 
-      </div>
+        </svg>
 
-      <table className='table table-striped'>
-        <thead>
-          <tr>
-            <th>Continent</th>
-            <th>Country</th>
-            <th>Occupied By</th>
-            <th>Armies</th>
-          </tr>
-        </thead>
-        <tbody>
-                {countries.map(c =>
-                    <tr key={c.name}>
-                        <td>{c.continent}</td>
-                        <td>{c.name}</td>
-                        <td>{c.occupyingPlayerName}</td>
-                        <td>{c.occupyingArmyCount}</td>
-                    </tr>
-                )}
-        </tbody>
-      </table>
+        <button className="btn btn-primary" onClick={play}>Play</button>
+        <table className='table table-striped'>
+          <thead>
+            <tr>
+              <th>Continent</th>
+              <th>Country</th>
+              <th>Occupied By</th>
+              <th>Armies</th>
+            </tr>
+          </thead>
+          <tbody>
+                  {countries.map(c =>
+                      <tr key={c.name}>
+                          <td>{c.continent}</td>
+                          <td>{c.name}</td>
+                          <td>{c.occupyingPlayerName}</td>
+                          <td>{c.occupyingArmyCount}</td>
+                      </tr>
+                  )}
+          </tbody>
+        </table>
       </div>
     );
+  }
+
+  let navBar = document.getElementsByTagName("header")[0];
+  if (navBar !== undefined) {
+    navBar.style.display = 'none';
   }
 
   let contents = loading
@@ -72,8 +92,7 @@ export function Risk() {
 
   return (
     <div>
-          <h1>Risk</h1>
-          {contents}
+      {contents}
     </div>
   );
 }

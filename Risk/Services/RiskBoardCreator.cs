@@ -77,7 +77,13 @@ namespace Risk.Services
             {
                 Countries = new SortedList<int, Country>
                 {
-                    {1, new Country { Name = RiskConstants.Countries.Alaska, Continent = RiskConstants.Continents.NorthAmerica }},
+                    {1, new Country
+                    {
+                        Name = RiskConstants.Countries.Alaska,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 115,
+                        Y = 47
+                    }},
                     {2, new Country { Name = RiskConstants.Countries.NorthwestTerritory, Continent = RiskConstants.Continents.NorthAmerica }},
                     {3, new Country { Name = RiskConstants.Countries.Greenland, Continent = RiskConstants.Continents.NorthAmerica }},
                     {4, new Country { Name = RiskConstants.Countries.Alberta, Continent = RiskConstants.Continents.NorthAmerica }},

@@ -9,5 +9,7 @@ namespace Risk.Models
         public List<Country> AdjacentCountries { get; set; }
         public Player OccupyingPlayer { get; set; }
         public int OccupyingArmyCount { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

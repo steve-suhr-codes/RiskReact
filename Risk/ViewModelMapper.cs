@@ -20,7 +20,9 @@ namespace Risk
                     Continent = x.Value.Continent,
                     OccupyingArmyCount = x.Value.OccupyingArmyCount,
                     OccupyingPlayerName = x.Value.OccupyingPlayer?.Name,
-                    OccupyingPlayerColor = x.Value.OccupyingPlayer?.Color ?? PlayerColor.None
+                    OccupyingPlayerColor = x.Value.OccupyingPlayer?.Color.ToString() ?? "white",
+                    X = x.Value.X,
+                    Y = x.Value.Y
                 }).ToList()
             };
             return result;
