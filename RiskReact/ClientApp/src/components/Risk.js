@@ -1,40 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import RiskMapImg from '../Media/RiskMap.png'
 import './Risk.css';
 
-export class Risk extends Component {
-    static displayName = Risk.name;
+export function Risk() {
 
-    refreshBoard(apiCall) {
-        this.state = { loading: true };
+  const [loading, setLoading] = useState(true);
+  const [boardCountires, setBoardCountries] = useState([]);
 
-        fetch(apiCall)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                this.setState({ boardCountires: data, loading: false });
-            });
-    }
+  function refreshBoard(apiCall) {
+    setLoading(true);
 
-    constructor (props) {
-        super(props);
-        this.state = { boardCountires: [], loading: true };
+    fetch(apiCall)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setBoardCountries(data);
+            setLoading(false);
+        });
+  }
 
-        this.refreshBoard('api/Risk/StartGame');
-    }
+  useEffect(() => {
+    refreshBoard('api/Risk/StartGame');
+  }, []);
 
+  function play() {
+      refreshBoard('api/Risk/Play');
+  }
 
-    play() {
-        this.refreshBoard('api/Risk/Play');
-    }
-
-    static renderboard(boardCountires) {
+  function renderBoard(countries) {
+    //console.log('renderBoard');
+    //console.log(countries);
     return (
       <div>
-      <button className="btn btn-primary" onClick={this.play}>Play</button>
+      <button className="btn btn-primary" onClick={play}>Play</button>
 
       <div>
-        <img src= { RiskMapImg } />
+        <img src={RiskMapImg} alt="Risk Map" />
       </div>
 
       <div className='risk-map'>
@@ -51,7 +52,7 @@ export class Risk extends Component {
           </tr>
         </thead>
         <tbody>
-                {boardCountires.map(c =>
+                {countries.map(c =>
                     <tr key={c.name}>
                         <td>{c.continent}</td>
                         <td>{c.name}</td>
@@ -65,16 +66,14 @@ export class Risk extends Component {
     );
   }
 
-  render () {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-        : Risk.renderboard(this.state.boardCountires);
+  let contents = loading
+    ? <p><em>Loading...</em></p>
+      : renderBoard(boardCountires);
 
-    return (
-      <div>
-            <h1>Risk</h1>
-            {contents}
-      </div>
-    );
-  }
+  return (
+    <div>
+          <h1>Risk</h1>
+          {contents}
+    </div>
+  );
 }
