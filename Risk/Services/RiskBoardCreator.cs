@@ -84,19 +84,83 @@ namespace Risk.Services
                         X = 115,
                         Y = 47
                     }},
-                    {2, new Country { Name = RiskConstants.Countries.NorthwestTerritory, Continent = RiskConstants.Continents.NorthAmerica }},
-                    {3, new Country { Name = RiskConstants.Countries.Greenland, Continent = RiskConstants.Continents.NorthAmerica }},
-                    {4, new Country { Name = RiskConstants.Countries.Alberta, Continent = RiskConstants.Continents.NorthAmerica }},
-                    {5, new Country { Name = RiskConstants.Countries.Ontario, Continent = RiskConstants.Continents.NorthAmerica }},
-                    {6, new Country { Name = RiskConstants.Countries.Quebec, Continent = RiskConstants.Continents.NorthAmerica }},
-                    {7, new Country { Name = RiskConstants.Countries.WesternUnitedStates, Continent = RiskConstants.Continents.NorthAmerica }},
-                    {8, new Country { Name = RiskConstants.Countries.EasternUnitedStates, Continent = RiskConstants.Continents.NorthAmerica }},
-                    {9, new Country { Name = RiskConstants.Countries.CentralAmerica, Continent = RiskConstants.Continents.NorthAmerica }},
+                    {2, new Country
+                    {
+                        Name = RiskConstants.Countries.NorthwestTerritory,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 155,
+                        Y = 45
+                    }},
+                    {3, new Country
+                    {
+                        Name = RiskConstants.Countries.Greenland,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 248,
+                        Y = 38
+                    }},
+                    {4, new Country
+                    {
+                        Name = RiskConstants.Countries.Alberta,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 145,
+                        Y = 70
+                    }},
+                    {5, new Country
+                    {
+                        Name = RiskConstants.Countries.Ontario,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 185,
+                        Y = 75
+                    }},
+                    {6, new Country
+                    {
+                        Name = RiskConstants.Countries.Quebec,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 215,
+                        Y = 72
+                    }},
+                    {7, new Country
+                    {
+                        Name = RiskConstants.Countries.WesternUnitedStates,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 143,
+                        Y = 100
+                    }},
+                    {8, new Country
+                    {
+                        Name = RiskConstants.Countries.EasternUnitedStates,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 180,
+                        Y = 112
+                    }},
+                    {9, new Country
+                    {
+                        Name = RiskConstants.Countries.CentralAmerica,
+                        Continent = RiskConstants.Continents.NorthAmerica,
+                        X = 137,
+                        Y = 140
+                    }},
 
-                    {10, new Country { Name = RiskConstants.Countries.Venezuela, Continent = RiskConstants.Continents.SouthAmerica }},
-                    {11, new Country { Name = RiskConstants.Countries.Peru, Continent = RiskConstants.Continents.SouthAmerica }},
-                    {12, new Country { Name = RiskConstants.Countries.Brazil, Continent = RiskConstants.Continents.SouthAmerica }},
-                    {13, new Country { Name = RiskConstants.Countries.Argentina, Continent = RiskConstants.Continents.SouthAmerica }},
+                    {10, new Country
+                    {
+                        Name = RiskConstants.Countries.Venezuela,
+                        Continent = RiskConstants.Continents.SouthAmerica
+                    }},
+                    {11, new Country
+                    {
+                        Name = RiskConstants.Countries.Peru,
+                        Continent = RiskConstants.Continents.SouthAmerica
+                    }},
+                    {12, new Country
+                    {
+                        Name = RiskConstants.Countries.Brazil,
+                        Continent = RiskConstants.Continents.SouthAmerica
+                    }},
+                    {13, new Country
+                    {
+                        Name = RiskConstants.Countries.Argentina,
+                        Continent = RiskConstants.Continents.SouthAmerica
+                    }},
 
                     {14, new Country { Name = RiskConstants.Countries.Iceland, Continent = RiskConstants.Continents.Europe }},
                     {15, new Country { Name = RiskConstants.Countries.Scandinavia, Continent = RiskConstants.Continents.Europe }},

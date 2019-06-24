@@ -33,8 +33,8 @@ export function Risk() {
     continent : 'North America',
     occupyingArmyCount : 0,
     occupyingPlayerColor : 'red',
-    x : 120,
-    y : 47
+    x : 150,
+    y : 180
   }
 
   //console.log(boardCountires[0]);
