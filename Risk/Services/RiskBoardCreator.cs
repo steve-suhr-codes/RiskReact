@@ -223,114 +223,158 @@ namespace Risk.Services
                     {21, new Country
                     {
                         Name = RiskConstants.Countries.Egypt,
-                        Continent = RiskConstants.Continents.Africa
+                        Continent = RiskConstants.Continents.Africa,
+                        X = 335,
+                        Y = 175
                     }},
                     {22, new Country
                     {
                         Name = RiskConstants.Countries.NorthAfrica,
-                        Continent = RiskConstants.Continents.Africa
+                        Continent = RiskConstants.Continents.Africa,
+                        X = 290,
+                        Y = 195
                     }},
                     {23, new Country
                     {
                         Name = RiskConstants.Countries.EastAfrica,
-                        Continent = RiskConstants.Continents.Africa
+                        Continent = RiskConstants.Continents.Africa,
+                        X = 365,
+                        Y = 215
                     }},
                     {24, new Country
                     {
                         Name = RiskConstants.Countries.Congo,
-                        Continent = RiskConstants.Continents.Africa
+                        Continent = RiskConstants.Continents.Africa,
+                        X = 337,
+                        Y = 235
                     }},
                     {25, new Country
                     {
                         Name = RiskConstants.Countries.SouthAfrica,
-                        Continent = RiskConstants.Continents.Africa
+                        Continent = RiskConstants.Continents.Africa,
+                        X = 337,
+                        Y = 285
                     }},
                     {26, new Country
                     {
                         Name = RiskConstants.Countries.Madagascar,
-                        Continent = RiskConstants.Continents.Africa
+                        Continent = RiskConstants.Continents.Africa,
+                        X = 395,
+                        Y = 285
                     }},
 
                     {27, new Country
                     {
                         Name = RiskConstants.Countries.MiddleEast,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 380,
+                        Y = 167
                     }},
                     {28, new Country
                     {
                         Name = RiskConstants.Countries.Afghanistan,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 410,
+                        Y = 110
                     }},
                     {29, new Country
                     {
                         Name = RiskConstants.Countries.Ural,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 417,
+                        Y = 75
                     }},
                     {30, new Country
                     {
                         Name = RiskConstants.Countries.Siberia,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 445,
+                        Y = 60
                     }},
                     {31, new Country
                     {
                         Name = RiskConstants.Countries.Yakutsk,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 475,
+                        Y = 42
                     }},
                     {32, new Country
                     {
                         Name = RiskConstants.Countries.Kamchatka,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 515,
+                        Y = 47
                     }},
                     {33, new Country
                     {
                         Name = RiskConstants.Countries.Irkutsk,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 476,
+                        Y = 74
                     }},
                     {34, new Country
                     {
                         Name = RiskConstants.Countries.Mongolia,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 485,
+                        Y = 102
                     }},
                     {35, new Country
                     {
                         Name = RiskConstants.Countries.China,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 470,
+                        Y = 130
                     }},
                     {36, new Country
                     {
                         Name = RiskConstants.Countries.Japan,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 540,
+                        Y = 100
                     }},
                     {37, new Country
                     {
                         Name = RiskConstants.Countries.India,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 440,
+                        Y = 165
                     }},
                     {38, new Country
                     {
                         Name = RiskConstants.Countries.Siam,
-                        Continent = RiskConstants.Continents.Asia
+                        Continent = RiskConstants.Continents.Asia,
+                        X = 485,
+                        Y = 175
                     }},
 
                     {39, new Country
                     {
                         Name = RiskConstants.Countries.Indonesia,
-                        Continent = RiskConstants.Continents.Australia
+                        Continent = RiskConstants.Continents.Australia,
+                        X = 490,
+                        Y = 235
                     }},
                     {40, new Country
                     {
                         Name = RiskConstants.Countries.NewGuinea,
-                        Continent = RiskConstants.Continents.Australia
+                        Continent = RiskConstants.Continents.Australia,
+                        X = 550,
+                        Y = 220
                     }},
                     {41, new Country
                     {
                         Name = RiskConstants.Countries.WesternAustralia,
-                        Continent = RiskConstants.Continents.Australia
+                        Continent = RiskConstants.Continents.Australia,
+                        X = 515,
+                        Y = 290
                     }},
                     {42, new Country
                     {
                         Name = RiskConstants.Countries.EasternAustralia,
-                        Continent = RiskConstants.Continents.Australia
+                        Continent = RiskConstants.Continents.Australia,
+                        X = 560,
+                        Y = 270
                     }},
                 }
             };

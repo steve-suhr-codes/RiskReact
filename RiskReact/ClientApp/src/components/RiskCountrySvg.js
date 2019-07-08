@@ -39,7 +39,7 @@ export function RiskCountrySvg(props) {
   return (
     <svg x={props.country.x} y={props.country.y} onClick={countryClick.bind(this)}>
       <circle cx="10" cy="10" r="10" fill={props.country.occupyingPlayerColor} id="AlaskaCircle">
-        <title>Alaska</title>
+        <title>{props.country.name}</title>
       </circle>
       <text x="10" y="10" fontSize="12" textAnchor="middle" alignmentBaseline="middle" fill="white">
         {props.country.occupyingArmyCount}

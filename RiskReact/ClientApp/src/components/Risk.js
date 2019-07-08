@@ -28,14 +28,14 @@ export function Risk() {
       refreshBoard('api/Risk/Play');
   }
 
-  var testCountry = {
-    name : 'test',
-    continent : 'North America',
-    occupyingArmyCount : 0,
-    occupyingPlayerColor : 'red',
-    x : 325,
-    y : 132
-  }
+  // var testCountry = {
+  //   name : 'test',
+  //   continent : 'North America',
+  //   occupyingArmyCount : 0,
+  //   occupyingPlayerColor : 'red',
+  //   x : 560,
+  //   y : 270
+  // }
 
   //console.log(boardCountires[0]);
   //console.log(testCountry);
@@ -52,7 +52,6 @@ export function Risk() {
           <image xlinkHref={RiskMapImg} x="0" y="0" height="100%" width="100%"/>
 
           {boardCountires.map(c => <RiskCountrySvg key={c.name} country={c} />)}
-          <RiskCountrySvg key="dev" country={testCountry} />
 
         </svg>
 
