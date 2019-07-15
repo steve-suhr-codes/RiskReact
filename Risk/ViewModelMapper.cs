@@ -23,7 +23,8 @@ namespace Risk
                     OccupyingPlayerColor = x.Value.OccupyingPlayer?.Color.ToString() ?? "white",
                     X = x.Value.X,
                     Y = x.Value.Y
-                }).ToList()
+                }).ToList(),
+                Ledger = game.Ledger.ReadAll()
             };
             return result;
         }

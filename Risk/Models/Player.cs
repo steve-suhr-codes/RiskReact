@@ -12,18 +12,20 @@ namespace Risk.Models
         public int ArmiesToDistribute { get; set; }
         public List<Card> Cards { get; set; } = new List<Card>();
         public List<Country> Countries { get; set; } = new List<Country>();
+        public Ledger Ledger { get; set; }
 
         private ICountryClaimer _countryClaimer { get; set; }
         private ITroopReenforcer _troopReenforcer { get; set; }
         private IAttacker _attacker { get; set; }
         private Logger _logger { get; set; }
 
-        public Player(ICountryClaimer countryClaimer, ITroopReenforcer troopReenforcer, IAttacker attacker, Logger logger)
+        public Player(ICountryClaimer countryClaimer, ITroopReenforcer troopReenforcer, IAttacker attacker, Logger logger, Ledger ledger)
         {
             _countryClaimer = countryClaimer;
             _troopReenforcer = troopReenforcer;
             _attacker = attacker;
             _logger = logger;
+            Ledger = ledger;
         }
 
         public void ClaimCountry(Country country)

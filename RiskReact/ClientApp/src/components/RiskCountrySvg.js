@@ -2,7 +2,7 @@ import React from 'react';
 
 export function RiskCountrySvg(props) {
 
-  console.log(props);
+  //console.log(props);
 
   function countryClick(event) {
     // console.log('countryClick');

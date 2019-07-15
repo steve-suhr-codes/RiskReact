@@ -12,6 +12,7 @@ namespace Risk
         public Table Table { get; set; }
         public GamePhase GamePhase { get; set; } = GamePhase.Pending;
         public TurnPhase TurnPhase { get; set; } = TurnPhase.None;
+        public Ledger Ledger { get; set; } = new Ledger();
 
         private IBoardCreator _boardCreator { get; set; }
         private IArmyDelegator _armyDelegator { get; set; }
@@ -28,7 +29,7 @@ namespace Risk
         {
             var armiesPerPlayer = _armyDelegator.GetStartingArmyCount(4);
 
-            var countryClaimer = new RandomCountryClaimer();
+            var countryClaimer = new SmartCountryClaimer1();
             var troopReenforcer = new RandomTroopReenforcer();
             var attacker = new RandomAttacker(new EvenDice(_logger));
 
@@ -37,25 +38,25 @@ namespace Risk
                 Board = _boardCreator.CreateBoard(),
                 Players = new List<Player>
                 {
-                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger, Ledger)
                     {
                         Name = "Player 1",
                         Color = PlayerColor.Red,
                         ArmiesToDistribute = armiesPerPlayer
                     },
-                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger, Ledger)
                     {
                         Name = "Player 2",
                         Color = PlayerColor.Blue,
                         ArmiesToDistribute = armiesPerPlayer
                     },
-                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger, Ledger)
                     {
                         Name = "Player 3",
                         Color = PlayerColor.Purple,
                         ArmiesToDistribute = armiesPerPlayer
                     },
-                    new Player(countryClaimer, troopReenforcer, attacker, _logger)
+                    new Player(countryClaimer, troopReenforcer, attacker, _logger, Ledger)
                     {
                         Name = "Player 4",
                         Color = PlayerColor.Yellow,

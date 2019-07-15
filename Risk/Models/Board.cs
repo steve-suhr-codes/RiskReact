@@ -21,7 +21,7 @@ namespace Risk.Models
         public List<Continent> GetContinentsOtherPlayersCanGet(string playerName)
         {
             return Continents
-                .Where(x => x.Value.PlayersCountryCount.Count(pcc => pcc.Key != null) <= 1)
+                .Where(x => x.Value.PlayersCountryCount.Count(pcc => pcc.Key != string.Empty) <= 1)
                 .Select(x => x.Value).ToList();
         }
 

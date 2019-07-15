@@ -14,7 +14,7 @@ namespace Risk.Models
             get
             {
                 var result = Countries
-                    .GroupBy(c => c.OccupyingPlayer?.Name)
+                    .GroupBy(c => c.OccupyingPlayer?.Name ?? string.Empty)
                     .ToDictionary(grp => grp.Key, grp => grp.Sum(x => 1));
 
                 return result;

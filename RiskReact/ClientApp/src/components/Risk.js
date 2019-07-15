@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import RiskMapImg from '../Media/RiskMap.jpg'
 import './Risk.css';
 import { RiskCountrySvg } from './RiskCountrySvg';
+import { RiskLedger } from './RiskLedger';
 
 export function Risk() {
 
   const [loading, setLoading] = useState(true);
   const [boardCountires, setBoardCountries] = useState([]);
+  const [ledger, setLedger] = useState('');
 
   function refreshBoard(apiCall) {
     setLoading(true);
@@ -14,8 +16,10 @@ export function Risk() {
     fetch(apiCall)
         .then(response => response.json())
         .then(data => {
-            data = data.filter(c => c.x !== 0);
-            setBoardCountries(data);
+            console.log(data);
+            data.countries = data.countries.filter(c => c.x !== 0);
+            setBoardCountries(data.countries);
+            setLedger(data.ledger);
             setLoading(false);
         });
   }
@@ -56,6 +60,7 @@ export function Risk() {
         </svg>
 
         <button className="btn btn-primary" onClick={play}>Play</button>
+        <RiskLedger ledger={ledger} />
         <table className='table table-striped'>
           <thead>
             <tr>

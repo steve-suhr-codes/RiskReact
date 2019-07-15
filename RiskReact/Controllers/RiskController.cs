@@ -24,7 +24,7 @@ namespace RiskReact.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<CountryViewModel> StartGame()
+        public RiskBoardViewModel StartGame()
         {
             var game = new Game(new RiskBoardCreator(), new RiskArmyDelegator());
             game.StartGame();
@@ -32,11 +32,11 @@ namespace RiskReact.Controllers
             _cache.Set(CacheKey, game);
 
             var vm = ViewModelMapper.RiskBoardViewModel(game);
-            return vm.Countries;
+            return vm;
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<CountryViewModel> Play()
+        public RiskBoardViewModel Play()
         {
             var game = _cache.Get<Game>(CacheKey);
             
@@ -48,7 +48,7 @@ namespace RiskReact.Controllers
             _cache.Set("RiskGame", game);
 
             var vm = ViewModelMapper.RiskBoardViewModel(game);
-            return vm.Countries;
+            return vm;
         }
 
     }
